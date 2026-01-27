@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package radio;
+
+option go_package = "github.com/bachtran02/webrtc-server/proto/webrtc-proto";
+option java_package = "lavaradio.proto";
+option java_multiple_files = true;
+
+service WebRTCManager {
+  rpc StartSession (SessionRequest) returns (SessionResponse) {}
+}
+
+service AudioProvider {
+  rpc PullAudioStream (StreamRequest) returns (stream AudioFrame) {}
+}
+
+message SessionRequest {
+  string audio_provider_address = 2;
+}
+
+message SessionResponse {
+  bool accepted = 1;
+}
+
+message StreamRequest {}
+
+message AudioFrame {
+  bytes opus_data = 1;
+  bool is_silence = 2;
+}
