@@ -16,20 +16,24 @@ service AudioProvider {
 }
 
 message StartSessionRequest {
-  string audio_provider_address = 1;
+  string stream_id = 1;
 }
 
 message StartSessionResponse {
   bool accepted = 1;
 }
 
-message EndSessionRequest{}
+message EndSessionRequest{
+  string stream_id = 1;
+}
 
 message EndSessionResponse {
   bool accepted = 1;
 }
 
-message StreamRequest {}
+message StreamRequest {
+  string stream_id = 1;
+}
 
 message AudioFrame {
   bytes opus_data = 1;
